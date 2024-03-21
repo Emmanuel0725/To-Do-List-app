@@ -13,8 +13,8 @@ const DeleteModal = ({ isOpen, onCancel, onConfirm }) => {
                             <p className='custom-dark-purple'>Are you sure you want to delete<span className='custom-light-orange'>?</span></p>
                         </div>
                         <div className="modal-footer">
-                            <button type="button" className="custom-bg-purple p-2 custom-white border-0 rounded-2" onClick={onConfirm}>Yes</button>
-                            <button type="button" className="custom-bg-orange p-2 custom-white border-0 rounded-2" onClick={onCancel}>Cancel</button>
+                            <button type="button" className="custom-bg-purple p-2 custom-white border-0 rounded-2" onClick={onConfirm}>Delete</button>
+                            <button type="button" className="custom-dark-purple custom-border-btn p-2 custom-white rounded-2" onClick={onCancel}>Cancel</button>
                         </div>
                     </div>
                 </div>

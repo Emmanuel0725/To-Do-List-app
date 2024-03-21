@@ -37,7 +37,7 @@ const TaskDetails = ({ selectedTask }) => {
         const currentDate = new Date().toLocaleString(); // Get the current date and time
         setTaskNotes(prevNotes => ({
             ...prevNotes,
-            [selectedTask]: [...(prevNotes[selectedTask] || []), { id: Date.now(), content: `${tempNotes} (Created: ${currentDate})`, checked: false }]
+            [selectedTask]: [...(prevNotes[selectedTask] || []), { id: Date.now(), content: tempNotes, created: currentDate, checked: false }]
         }));
         setShowModal(false);
         setTempNotes('');
@@ -143,7 +143,10 @@ const TaskDetails = ({ selectedTask }) => {
                                     {editingNoteId === note.id ? (
                                         <input type="text" className='w-100 m-4 form-control' value={note.content} onChange={(e) => handleEditNote(note.id, e.target.value)} />
                                     ) : (
-                                        <p className='fs-6 custom-dark-purple w-100 m-4'>{note.content}</p>
+                                        <div>
+                                            <p className='fs-6 custom-dark-purple m-2'>{note.content}</p>
+                                            <p className='m-2 custom-dark-purple'style={{ opacity: 0.6, fontSize: '0.9rem' }}> Created: {note.created}</p>
+                                        </div>
                                     )}
                                 </div>
                                 <div className='mb-2'>
@@ -153,41 +156,41 @@ const TaskDetails = ({ selectedTask }) => {
                                             <FontAwesomeIcon icon={faSave} />
                                         </button>
                                     ) : (
-                                        <FontAwesomeIcon icon={faEdit} className="btn border-0 p-2" style={{ background: '#9D71BC', color: 'white' }} onClick={() => handleEditButtonClick(note.id)} />
-                                    )}
-                                    <FontAwesomeIcon icon={faTrashAlt} className="border-0 btn btn-danger mx-1 p-2" style={{ background: '#F4512C' }} onClick={() => handleDeleteNote(note.id)} />
+                                         <FontAwesomeIcon icon={faEdit} className="btn border-0 p-2" style={{ background: '#9D71BC', color: 'white' }} onClick={() => handleEditButtonClick(note.id)} />
+                                        )}
+                                        <FontAwesomeIcon icon={faTrashAlt} className="border-0 btn btn-danger mx-1 p-2" style={{ background: '#F4512C' }} onClick={() => handleDeleteNote(note.id)} />
+                                    </div>
                                 </div>
-                            </div>
-                        ))}
-                    </div>
-                )}
-            </div>
-            {showModal && (
-               <div className="modal d-flex align-items-center justify-content-center" tabIndex="-1" role="dialog" style={{ display: 'block', backgroundColor: 'rgba(0, 0, 0, 0.5)' }}>
-                    <div className="modal-dialog w-100" role="document">
-                        <div className="modal-content">
-                            <div className="modal-header">
-                                <h5 className="modal-title custom-dark-purple fw-bold">Add Notes</h5>
-                            </div>
-                            <div className="modal-body">
-                                <textarea
-                                    className="form-control"
-                                    value={tempNotes}
-                                    onChange={(e) => setTempNotes(e.target.value)}
-                                ></textarea>
-                            </div>
-                            <div className="modal-footer">
-                                <button type="button" className="custom-bg-purple p-2 custom-white border-0 rounded-2" onClick={handleSaveNotes}>Save</button>
-                                <button type="button" className="custom-bg-orange p-2 custom-white border-0 rounded-2" onClick={handleCloseModal}>Close</button>
+                            ))}
+                        </div>
+                    )}
+                </div>
+                {showModal && (
+                   <div className="modal d-flex align-items-center justify-content-center" tabIndex="-1" role="dialog" style={{ display: 'block', backgroundColor: 'rgba(0, 0, 0, 0.5)' }}>
+                        <div className="modal-dialog w-100" role="document">
+                            <div className="modal-content">
+                                <div className="modal-header">
+                                    <h5 className="modal-title custom-dark-purple fw-bold">Add Notes</h5>
+                                </div>
+                                <div className="modal-body">
+                                    <textarea
+                                        className="form-control"
+                                        value={tempNotes}
+                                        onChange={(e) => setTempNotes(e.target.value)}
+                                    ></textarea>
+                                </div>
+                                <div className="modal-footer">
+                                    <button type="button" className="custom-bg-purple p-2 custom-white border-0 rounded-2" onClick={handleSaveNotes}>Save</button>
+                                    <button type="button" className="custom-border-btn custom-dark-purple p-2 custom-white rounded-2" onClick={handleCloseModal}>Close</button>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
-            )}
-            <DeleteModal isOpen={showDeleteModal} onCancel={() => setShowDeleteModal(false)} onConfirm={noteToDelete !== null ? confirmDeleteNote : confirmDeleteAllNotes} />
-        </div>
-    );
-};
-
-export default TaskDetails;
-
+                )}
+                <DeleteModal isOpen={showDeleteModal} onCancel={() => setShowDeleteModal(false)} onConfirm={noteToDelete !== null ? confirmDeleteNote : confirmDeleteAllNotes} />
+            </div>
+        );
+    };
+    
+    export default TaskDetails;
+    

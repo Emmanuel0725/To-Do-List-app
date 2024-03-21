@@ -57,10 +57,6 @@
   border-image-slice: 1;
 }
 
-.custom-border-color {
-  border-bottom: 3px solid #5E1B89;
-}
-
 .custom-border-colors {
   border-bottom: 3px solid;
   border-top: 3px solid;
@@ -80,6 +76,10 @@
 
 .custom-hover:hover{
   background-color: #9D71BC;
+}
+
+.custom-border-btn {
+  border: 2px solid #9D71BC;
 }
 
 .notes-container {
