@@ -3,10 +3,10 @@ import './App.css';
 import 'typeface-dm-sans';
 import 'typeface-roboto';
 import "bootstrap/dist/css/bootstrap.min.css"; /* BOOTSTRAP 5 */
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faPlus, faTrashAlt, faEdit, faCheck } from '@fortawesome/free-solid-svg-icons';
 import TaskDetails from './TaskDetails';
 import DeleteModal from './DeleteModal'; 
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faPlus, faTrashAlt, faEdit, faCheck } from '@fortawesome/free-solid-svg-icons';
 
 
 function App() {
